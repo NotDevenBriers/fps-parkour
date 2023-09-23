@@ -114,10 +114,4 @@ public class PlayerMovement : MonoBehaviour
         readyToJump = true;
     }
 
-    private void OnDrawGizmos()
-    {
-        // Draw a raycast for ground detection in the Scene view
-        Gizmos.color = grounded ? Color.green : Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + Vector3.down * (playerHeight * 0.5f + 0.5f));
-    }
 }
