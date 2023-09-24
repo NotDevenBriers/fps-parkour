@@ -847,6 +847,7 @@ MonoBehaviour:
   walkSpeed: 10
   sprintSpeed: 15
   slideSpeed: 60
+  wallrunSpeed: 12
   speedIncreaseMultiplier: 1.5
   slopeIncreaseMultiplier: 2.5
   groundDrag: 4
@@ -866,6 +867,8 @@ MonoBehaviour:
   orientation: {fileID: 2062781234}
   state: 0
   sliding: 0
+  crouching: 0
+  wallrunning: 0
 --- !u!114 &1142199829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -884,6 +887,32 @@ MonoBehaviour:
   slideForce: 200
   slideYScale: 0.5
   slideKey: 306
+--- !u!114 &1142199830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142199824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec61f213c6cdb90418471625919b9b12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whatIsWall:
+    serializedVersion: 2
+    m_Bits: 256
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
+  wallRunForce: 200
+  wallClimbSpeed: 8
+  maxWallRunTime: 1.5
+  upwardsRunKey: 304
+  downwardsRunKey: 306
+  wallCheckDistance: 0.7
+  minJumpHeight: 2
+  orientation: {fileID: 2062781234}
 --- !u!1 &1176457570
 GameObject:
   m_ObjectHideFlags: 0
@@ -1385,6 +1414,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6300185739566728868, guid: 036f323740628ea4d997df526875cbe9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1142199829}
+    - targetCorrespondingSourceObject: {fileID: 6300185739566728868, guid: 036f323740628ea4d997df526875cbe9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1142199830}
   m_SourcePrefab: {fileID: 100100000, guid: 036f323740628ea4d997df526875cbe9, type: 3}
 --- !u!4 &2018882596 stripped
 Transform:
