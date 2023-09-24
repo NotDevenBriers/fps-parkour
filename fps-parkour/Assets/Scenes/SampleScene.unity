@@ -424,17 +424,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffbcb85f03bdb3f4bb98d417b27170c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7
+  walkSpeed: 7
+  sprintSpeed: 25
   groundDrag: 5
   jumpForce: 12
   jumpCooldown: 0.25
   airMultiplier: 0.4
+  crouchSpeed: 3
+  crouchYScale: 0.5
   jumpKey: 32
+  sprintKey: 304
+  crouchKey: 306
   playerHeight: 2
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
+  maxSlopeAngle: 100
   orientation: {fileID: 2062781234}
+  state: 0
 --- !u!1 &1605225018
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,7 +502,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 7c0c180f351ae4b4abbc466c212e8c6e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -699,6 +706,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 7c0c180f351ae4b4abbc466c212e8c6e, type: 2}
+    - target: {fileID: 3237583057517027919, guid: cb833ee2a1010fa4db3cf1a60bf4b64f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 43.85849
+      objectReference: {fileID: 0}
     - target: {fileID: 3993799440125047196, guid: cb833ee2a1010fa4db3cf1a60bf4b64f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -724,12 +735,40 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 7c0c180f351ae4b4abbc466c212e8c6e, type: 2}
     - target: {fileID: 6598334916502798034, guid: cb833ee2a1010fa4db3cf1a60bf4b64f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -56.800003
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598334916502798034, guid: cb833ee2a1010fa4db3cf1a60bf4b64f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -90.8
+      value: -90.80001
       objectReference: {fileID: 0}
     - target: {fileID: 6598334916502798034, guid: cb833ee2a1010fa4db3cf1a60bf4b64f, type: 3}
       propertyPath: m_LocalPosition.z
       value: 184.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598334916502798034, guid: cb833ee2a1010fa4db3cf1a60bf4b64f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6859418
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598334916502798034, guid: cb833ee2a1010fa4db3cf1a60bf4b64f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.14934313
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598334916502798034, guid: cb833ee2a1010fa4db3cf1a60bf4b64f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.6956392
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598334916502798034, guid: cb833ee2a1010fa4db3cf1a60bf4b64f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.1525337
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598334916502798034, guid: cb833ee2a1010fa4db3cf1a60bf4b64f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -449.288
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598334916502798034, guid: cb833ee2a1010fa4db3cf1a60bf4b64f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -204.648
       objectReference: {fileID: 0}
     - target: {fileID: 7114685396010875481, guid: cb833ee2a1010fa4db3cf1a60bf4b64f, type: 3}
       propertyPath: m_Materials.Array.data[0]
