@@ -186,15 +186,19 @@ public class WallRunning : MonoBehaviour
 
     private void WallJump()
     {
-        exitingWall = true;
-        exitWallTimer = exitWallTime;
+        if(wallRunTimer > 0)
+        {
+            exitingWall = true;
+            exitWallTimer = exitWallTime;
 
-        Vector3 wallNormal = wallRight ? rightWallhit.normal : leftWallhit.normal;
+            Vector3 wallNormal = wallRight ? rightWallhit.normal : leftWallhit.normal;
 
-        Vector3 forceToApply = transform.up * wallJumpUpForce + wallNormal * wallJumpSideForce;
+            Vector3 forceToApply = transform.up * wallJumpUpForce + wallNormal * wallJumpSideForce;
         
-        // reset the player Y velocity and add force
-        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-        rb.AddForce(forceToApply, ForceMode.Impulse);
+            // reset the player Y velocity and add force
+            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+            rb.AddForce(forceToApply, ForceMode.Impulse);
+        }
+        
     }
 }
