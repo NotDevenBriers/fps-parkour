@@ -103,7 +103,7 @@ public class WallRunning : MonoBehaviour
             // wall jump
             if(Input.GetKeyDown(wallJumpKey))
                 WallJump();
-        }
+        } 
 
         // State 2 - Exiting Wallrun
         else if (exitingWall)
@@ -128,16 +128,22 @@ public class WallRunning : MonoBehaviour
 
     private void StartWallRun()
     {
-        pm.wallrunning = true;
 
-        wallRunTimer = maxWallRunTime;
+        if (pm.touchedGround || wallRunTimer >= 0)
+        {
+            pm.wallrunning = true;
 
-        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+            wallRunTimer = maxWallRunTime;
 
-        // apply camera effects
-        cam.DoFov(90f);
-        if (wallLeft) cam.DoTilt(-5f);
-        if (wallRight) cam.DoTilt(5f);
+            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+            // apply camera effects
+            cam.DoFov(90f);
+            if (wallLeft) cam.DoTilt(-5f);
+            if (wallRight) cam.DoTilt(5f);
+            pm.touchedGround = false;
+        }
+        
     }
 
     private void WallRunningMovement()

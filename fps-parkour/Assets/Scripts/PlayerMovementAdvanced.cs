@@ -39,6 +39,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public float playerHeight;
     public LayerMask whatIsGround;
     public bool grounded;
+    public bool touchedGround;
 
     [Header("Slope Handling")]
     public float maxSlopeAngle;
@@ -75,6 +76,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
+        touchedGround = true;
         readyToJump = true;
 
         startYScale = transform.localScale.y;
@@ -84,7 +86,9 @@ public class PlayerMovementAdvanced : MonoBehaviour
     {
         // ground check
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
-
+        if (grounded)
+            touchedGround = true;
+        
         MyInput();
         SpeedControl();
         StateHandler();
