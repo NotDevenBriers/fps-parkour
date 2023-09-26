@@ -42,9 +42,9 @@ public class Sliding : MonoBehaviour
     private void Update()
     {
         // check for slidable
-        //isSlide = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 2f, whatIsGround);
-        //if (isSlide)
-            //canSlide = true;
+        isSlide = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 2f, whatIsGround);
+        if (isSlide)
+            canSlide = true;
 
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
