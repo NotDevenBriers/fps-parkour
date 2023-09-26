@@ -9,8 +9,13 @@ public class Sliding : MonoBehaviour
     public Transform playerObj;
     private Rigidbody rb;
     private PlayerMovementAdvanced pm;
+    public PlayerCam cam;
 
     [Header("Sliding")]
+    public float playerHeight;
+    public LayerMask whatIsGround;
+    public bool canSlide;
+    public bool isSlide;
     public float maxSlideTime;
     public float slideForce;
     private float slideTimer;
@@ -23,6 +28,8 @@ public class Sliding : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
 
+    
+    
 
     private void Start()
     {
@@ -32,8 +39,20 @@ public class Sliding : MonoBehaviour
         startYScale = playerObj.localScale.y;
     }
 
+    public void slideDetect()
+    {
+        // check for slidable
+        isSlide = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 2.5f, whatIsGround);
+        if (isSlide)
+            canSlide = true;
+        else
+            canSlide = false;
+    }
+
     private void Update()
     {
+        
+
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
@@ -52,9 +71,10 @@ public class Sliding : MonoBehaviour
 
     private void StartSlide()
     {
-        if (pm.grounded || pm.OnSlope())
+        if (pm.grounded || pm.OnSlope() || canSlide)
         {
             pm.sliding = true;
+            cam.DoFov(90f);
 
             playerObj.localScale = new Vector3(playerObj.localScale.x, slideYScale, playerObj.localScale.z);
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
@@ -98,6 +118,7 @@ public class Sliding : MonoBehaviour
     private void StopSlide()
     {
         pm.sliding = false;
+        cam.DoFov(60f);
 
         playerObj.localScale = new Vector3(playerObj.localScale.x, startYScale, playerObj.localScale.z);
     }

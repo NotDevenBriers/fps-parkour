@@ -46,8 +46,10 @@ public class PlayerMovementAdvanced : MonoBehaviour
     private RaycastHit slopeHit;
     private bool exitingSlope;
     
-
+    [Header("References")]
+    public PlayerCam cam;
     public Transform orientation;
+    private Sliding sm;
 
     float horizontalInput;
     float verticalInput;
@@ -75,6 +77,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     private void Start()
     {
+        sm = GetComponent<Sliding>();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
@@ -182,6 +185,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         // Mode - Sprinting
         else if(grounded && Input.GetKey(sprintKey))
         {
+            cam.DoFov(80f);
             state = MovementState.sprinting;
             desiredMoveSpeed = sprintSpeed;
         }
@@ -189,6 +193,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         // Mode - Walking
         else if (grounded)
         {
+            cam.DoFov(60f);
             state = MovementState.walking;
             desiredMoveSpeed = walkSpeed;
         }
@@ -262,7 +267,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         // in air
         else if(!grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
-
+            sm.slideDetect();
         // turn gravity off while on slope
         if(!wallrunning) rb.useGravity = !OnSlope();
     }

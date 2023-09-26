@@ -4650,6 +4650,7 @@ MonoBehaviour:
   grounded: 0
   touchedGround: 0
   maxSlopeAngle: 100
+  cam: {fileID: 1622438520}
   orientation: {fileID: 2062781234}
   state: 0
   activeGrapple: 0
@@ -4671,6 +4672,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientation: {fileID: 2062781234}
   playerObj: {fileID: 1206279862}
+  cam: {fileID: 1622438520}
+  playerHeight: 2
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
+  canSlide: 0
+  isSlide: 0
   maxSlideTime: 0.75
   slideForce: 200
   slideYScale: 0.5
@@ -4696,6 +4704,7 @@ MonoBehaviour:
   wallRunForce: 200
   wallJumpUpForce: 9
   wallJumpSideForce: 12
+  maxWallJumpLimit: 0
   wallClimbSpeed: 8
   maxWallRunTime: 0.75
   upwardsRunKey: 304
