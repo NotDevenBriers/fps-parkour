@@ -10,7 +10,6 @@ public class WallRunning : MonoBehaviour
     public float wallRunForce;
     public float wallJumpUpForce;
     public float wallJumpSideForce;
-    public int maxWallJumpLimit;
     public float wallClimbSpeed;
     public float maxWallRunTime;
     private float wallRunTimer;
@@ -36,10 +35,16 @@ public class WallRunning : MonoBehaviour
     private bool exitingWall;
     public float exitWallTime;
     private float exitWallTimer;
+    public float maxWallJumpLimit;
 
     [Header("Gravity")]
     public bool useGravity;
     public float gravityCounterForce;
+
+    [Header("Ground Check")]
+    public float playerHeight;
+    public bool grounded;
+    public bool touchedGround;
 
     [Header("References")]
     public Transform orientation;
@@ -51,10 +56,15 @@ public class WallRunning : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         pm = GetComponent<PlayerMovementAdvanced>();
+        maxWallJumpLimit = 3;
     }
 
     private void Update()
     {
+        // ground check
+        if (pm.grounded)
+            maxWallJumpLimit = 3;
+
         CheckForWall();
         StateMachine();
     }
@@ -103,8 +113,7 @@ public class WallRunning : MonoBehaviour
 
             // wall jump
             if(Input.GetKeyDown(wallJumpKey) && maxWallJumpLimit != 0)
-                WallJump();
-                maxWallJumpLimit = maxWallJumpLimit - 1;
+                    WallJump(); 
         } 
 
         // State 2 - Exiting Wallrun
@@ -188,6 +197,7 @@ public class WallRunning : MonoBehaviour
 
     private void WallJump()
     {
+        maxWallJumpLimit = maxWallJumpLimit - 1;
         if(wallRunTimer > 0)
         {
             exitingWall = true;
@@ -200,6 +210,10 @@ public class WallRunning : MonoBehaviour
             // reset the player Y velocity and add force
             rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
             rb.AddForce(forceToApply, ForceMode.Impulse);
+        }
+        else
+        {
+            print("cannot wall jump");
         }
         
     }
