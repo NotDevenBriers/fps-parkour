@@ -6,6 +6,7 @@ public class GrapplingGun : MonoBehaviour
 {
     [Header("References")]
     private PlayerMovementAdvanced pm;
+    private WallRunning wr;
     public Transform cam;
     public Transform gunTip;
     public LayerMask whatIsGrappleable;
@@ -31,11 +32,22 @@ public class GrapplingGun : MonoBehaviour
     private void Start()
     {
         pm = GetComponent<PlayerMovementAdvanced>();
+        wr = GetComponent<WallRunning>();
+    }
+
+    // resetting wall run variables if you successfully grapple
+    private void ResetWall()
+    {
+        wr.maxWallJumpLimit = 3;
+        wr.wallRunTimer = wr.maxWallRunTime;
+        print(wr.maxWallJumpLimit); 
+        print(wr.wallRunTimer);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(grappleKey)) StartGrapple();
+        if (Input.GetKeyDown(grappleKey))
+         StartGrapple();
 
         if (grapplingCdTimer > 0)
             grapplingCdTimer -= Time.deltaTime;
@@ -44,7 +56,11 @@ public class GrapplingGun : MonoBehaviour
     private void LateUpdate()
     {
          if (grappling)
-            lr.SetPosition(0, gunTip.position);
+            {
+                lr.SetPosition(0, gunTip.position);
+                ResetWall();
+            }
+            
         else
             return;
     }

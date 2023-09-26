@@ -12,7 +12,7 @@ public class WallRunning : MonoBehaviour
     public float wallJumpSideForce;
     public float wallClimbSpeed;
     public float maxWallRunTime;
-    private float wallRunTimer;
+    public float wallRunTimer;
 
     [Header("Input")]
     public KeyCode upwardsRunKey = KeyCode.LeftShift;

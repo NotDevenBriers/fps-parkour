@@ -9,6 +9,7 @@ public class SwingingDone : MonoBehaviour
     public Transform gunTip, cam, player;
     public LayerMask whatIsGrappleable;
     public PlayerMovementAdvanced pm;
+    public WallRunning wr;
     
     
 
@@ -33,6 +34,10 @@ public class SwingingDone : MonoBehaviour
     [Header("Input")]
     public KeyCode swingKey = KeyCode.Mouse0;
 
+    private void Start()
+    {
+        wr = GetComponent<WallRunning>();
+    }
 
     private void Update()
     {
@@ -89,7 +94,15 @@ public class SwingingDone : MonoBehaviour
 
         predictionHit = raycastHit.point == Vector3.zero ? sphereCastHit : raycastHit;
     }
-
+    
+    // resetting wall run variables if you successfully grapple
+    private void ResetWall()
+    {
+        wr.maxWallJumpLimit = 3;
+        wr.wallRunTimer = wr.maxWallRunTime;
+        print(wr.maxWallJumpLimit); 
+        print(wr.wallRunTimer);
+    }
 
     private void StartSwing()
     {
@@ -102,6 +115,7 @@ public class SwingingDone : MonoBehaviour
         pm.ResetRestrictions();
 
         pm.swinging = true;
+        ResetWall();
 
         swingPoint = predictionHit.point;
         joint = player.gameObject.AddComponent<SpringJoint>();

@@ -12253,7 +12253,8 @@ MonoBehaviour:
   wallJumpUpForce: 9
   wallJumpSideForce: 12
   wallClimbSpeed: 8
-  maxWallRunTime: 0.75
+  maxWallRunTime: 100
+  wallRunTimer: 0
   upwardsRunKey: 304
   downwardsRunKey: 306
   wallJumpKey: 32
@@ -12290,7 +12291,7 @@ MonoBehaviour:
   maxGrappleDistance: 40
   grappleDelayTime: 0.25
   overshootYAxis: 2
-  grapplingCd: 1
+  grapplingCd: 0.5
   grappleKey: 324
 --- !u!4 &1142199840 stripped
 Transform:
@@ -12322,6 +12323,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   pm: {fileID: 1142199826}
+  wr: {fileID: 0}
   orientation: {fileID: 2062781234}
   rb: {fileID: 1142199841}
   horizontalThrustForce: 2000
