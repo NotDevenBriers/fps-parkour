@@ -12,6 +12,10 @@ public class Sliding : MonoBehaviour
     public PlayerCam cam;
 
     [Header("Sliding")]
+    public float playerHeight;
+    public LayerMask whatIsGround;
+    public bool canSlide;
+    public bool isSlide;
     public float maxSlideTime;
     public float slideForce;
     private float slideTimer;
@@ -24,6 +28,8 @@ public class Sliding : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
 
+    
+    
 
     private void Start()
     {
@@ -35,6 +41,11 @@ public class Sliding : MonoBehaviour
 
     private void Update()
     {
+        // check for slidable
+        isSlide = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 2f, whatIsGround);
+        if (isSlide)
+            canSlide = true;
+
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
@@ -53,7 +64,7 @@ public class Sliding : MonoBehaviour
 
     private void StartSlide()
     {
-        if (pm.grounded || pm.OnSlope())
+        if (pm.grounded || pm.OnSlope() || canSlide)
         {
             pm.sliding = true;
             cam.DoFov(90f);
