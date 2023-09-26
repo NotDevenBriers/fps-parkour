@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grappling : MonoBehaviour
+public class GrapplingGun : MonoBehaviour
 {
     [Header("References")]
     private PlayerMovementAdvanced pm;
@@ -42,8 +42,8 @@ public class Grappling : MonoBehaviour
 
     private void LateUpdate()
     {
-        // if (grappling)
-        //    lr.SetPosition(0, gunTip.position);
+         if (grappling)
+             lr.SetPosition(0, gunTip.position);
     }
 
     private void StartGrapple()
@@ -96,7 +96,7 @@ public class Grappling : MonoBehaviour
 
         grapplingCdTimer = grapplingCd;
 
-        //lr.enabled = false;
+        lr.enabled = false;
     }
 
     public bool IsGrappling()
