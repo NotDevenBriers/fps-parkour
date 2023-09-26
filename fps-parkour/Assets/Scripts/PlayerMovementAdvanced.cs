@@ -49,6 +49,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     [Header("References")]
     public PlayerCam cam;
     public Transform orientation;
+    private Sliding sm;
 
     float horizontalInput;
     float verticalInput;
@@ -74,6 +75,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     private void Start()
     {
+        sm = GetComponent<Sliding>();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
@@ -252,7 +254,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         // in air
         else if(!grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
-
+            sm.slideDetect();
         // turn gravity off while on slope
         if(!wallrunning) rb.useGravity = !OnSlope();
     }

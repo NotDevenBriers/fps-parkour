@@ -210,11 +210,6 @@ public class WallRunning : MonoBehaviour
             // reset the player Y velocity and add force
             rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
             rb.AddForce(forceToApply, ForceMode.Impulse);
-        }
-        else
-        {
-            print("cannot wall jump");
-        }
-        
+        } 
     }
 }
