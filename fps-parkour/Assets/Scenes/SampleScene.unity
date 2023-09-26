@@ -4704,7 +4704,6 @@ MonoBehaviour:
   wallRunForce: 200
   wallJumpUpForce: 9
   wallJumpSideForce: 12
-  maxWallJumpLimit: 0
   wallClimbSpeed: 8
   maxWallRunTime: 0.75
   upwardsRunKey: 304
@@ -4713,8 +4712,12 @@ MonoBehaviour:
   wallCheckDistance: 0.7
   minJumpHeight: 2
   exitWallTime: 0.2
+  maxWallJumpLimit: 0
   useGravity: 1
   gravityCounterForce: 0
+  playerHeight: 0
+  grounded: 0
+  touchedGround: 0
   orientation: {fileID: 2062781234}
   cam: {fileID: 1622438520}
 --- !u!114 &1142199838
@@ -8985,7 +8988,7 @@ Transform:
   m_GameObject: {fileID: 1923947692}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0038253078, y: 0.91090703, z: -0.41258836, w: -0.0021264064}
-  m_LocalPosition: {x: 578.1, y: -8.3, z: 32.8}
+  m_LocalPosition: {x: 578, y: -16.6, z: 42.3}
   m_LocalScale: {x: 20, y: 1, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children: []
