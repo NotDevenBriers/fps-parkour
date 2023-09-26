@@ -4,14 +4,9 @@ using UnityEngine;
 
 public class SniperShoot : MonoBehaviour
 {
-    public float range = 100f;
-
+    public float damage = 100;
+    public float range = 250f;
     public LayerMask layerMask;
-
-    void Start()
-    {
-
-    }
 
     void Update()
     {
@@ -35,6 +30,12 @@ public class SniperShoot : MonoBehaviour
         if (Physics.Raycast(ray, out hit, range, layerMask.value))
         {
             Debug.Log(hit.transform.name);
+
+            PlayAnim playAnim = hit.transform.GetComponent<PlayAnim>();
+            if (playAnim != null)
+            {
+                playAnim.PlayAnimation("TargetFalling");
+            }
         }
     }
 }
