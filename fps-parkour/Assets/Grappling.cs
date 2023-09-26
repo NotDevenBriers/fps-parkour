@@ -44,7 +44,9 @@ public class GrapplingGun : MonoBehaviour
     private void LateUpdate()
     {
          if (grappling)
-             lr.SetPosition(0, gunTip.position);
+            lr.SetPosition(0, gunTip.position);
+        else
+            return;
     }
 
     private void StartGrapple()
@@ -52,28 +54,45 @@ public class GrapplingGun : MonoBehaviour
         if (grapplingCdTimer > 0) return;
 
         sm.canSlide = false;
-
         grappling = true;
-
         pm.freeze = true;
 
         RaycastHit hit;
-        if(Physics.Raycast(cam.position, cam.forward, out hit, maxGrappleDistance, whatIsGrappleable))
+        if (Physics.Raycast(cam.position, cam.forward, out hit, maxGrappleDistance, whatIsGrappleable))
         {
             grapplePoint = hit.point;
+        }
+        else
+        {
+            // If no valid grapple point is found, cancel the grapple
+            CancelGrapple();
+            return;
+        }
+
+        // Check if the gunTip is not null
+        if (gunTip != null)
+        {
+            lr.enabled = true;
+            lr.SetPosition(0, gunTip.position);
+            lr.SetPosition(1, grapplePoint);
 
             Invoke(nameof(ExecuteGrapple), grappleDelayTime);
         }
         else
         {
-            grapplePoint = cam.position + cam.forward * maxGrappleDistance;
-
-            Invoke(nameof(StopGrapple), grappleDelayTime);
+            // If gunTip is null, cancel the grapple
+            CancelGrapple();
         }
-
-        lr.enabled = true;
-        lr.SetPosition(1, grapplePoint);
     }
+
+private void CancelGrapple()
+{
+    sm.canSlide = true;
+    grappling = false;
+    pm.freeze = false;
+    grapplingCdTimer = grapplingCd;
+    lr.enabled = false;
+}
 
     private void ExecuteGrapple()
     {
