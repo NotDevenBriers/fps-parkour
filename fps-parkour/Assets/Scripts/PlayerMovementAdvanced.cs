@@ -46,7 +46,8 @@ public class PlayerMovementAdvanced : MonoBehaviour
     private RaycastHit slopeHit;
     private bool exitingSlope;
     
-
+    [Header("References")]
+    public PlayerCam cam;
     public Transform orientation;
 
     float horizontalInput;
@@ -170,6 +171,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         // Mode - Sprinting
         else if(grounded && Input.GetKey(sprintKey))
         {
+            cam.DoFov(80f);
             state = MovementState.sprinting;
             desiredMoveSpeed = sprintSpeed;
         }
@@ -177,6 +179,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         // Mode - Walking
         else if (grounded)
         {
+            cam.DoFov(60f);
             state = MovementState.walking;
             desiredMoveSpeed = walkSpeed;
         }
