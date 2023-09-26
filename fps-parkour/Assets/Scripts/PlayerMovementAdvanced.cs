@@ -10,6 +10,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public float sprintSpeed;
     public float slideSpeed;
     public float wallrunSpeed;
+    public float swingSpeed;
 
     private float desiredMoveSpeed;
     private float lastDesiredMoveSpeed;
@@ -60,8 +61,10 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     public MovementState state;
     public enum MovementState
-    {
+    {   
         freeze,
+        grappling,
+        swinging,
         walking,
         sprinting,
         wallrunning,
@@ -74,6 +77,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public bool sliding;
     public bool crouching;
     public bool wallrunning;
+    public bool swinging;
 
     private void Start()
     {
@@ -151,6 +155,20 @@ public class PlayerMovementAdvanced : MonoBehaviour
             state = MovementState.freeze;
             moveSpeed = 0;
             rb.velocity = Vector3.zero;
+        }
+
+        //Mode - Grappling
+        else if (activeGrapple)
+        {
+            state = MovementState.grappling;
+            moveSpeed = sprintSpeed;
+        }
+
+        //Mode - Swinging
+        else if (swinging)
+        {
+            state = MovementState.swinging;
+            moveSpeed = swingSpeed;
         }
 
 

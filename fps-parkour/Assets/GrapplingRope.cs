@@ -21,17 +21,22 @@ public class GrapplingRope : MonoBehaviour {
         spring.SetTarget(0);
     }
     
-    //Called after Update
+    // Called after Update
     void LateUpdate() {
         DrawRope();
     }
 
     void DrawRope() {
-        //If not grappling, don't draw rope
+        // Check if grapplingGun is null and return if it is
+        if (grapplingGun == null) {
+            return;
+        }
+
+        // If not grappling, don't draw the rope
         if (!grapplingGun.IsGrappling()) {
             currentGrapplePosition = grapplingGun.gunTip.position;
             spring.Reset();
-            if (lr.positionCount > 0)
+            if (lr.positionCount > 1)
                 lr.positionCount = 0;
             return;
         }
