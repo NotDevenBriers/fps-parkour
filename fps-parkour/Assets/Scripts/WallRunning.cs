@@ -10,6 +10,7 @@ public class WallRunning : MonoBehaviour
     public float wallRunForce;
     public float wallJumpUpForce;
     public float wallJumpSideForce;
+    public int maxWallJumpLimit;
     public float wallClimbSpeed;
     public float maxWallRunTime;
     private float wallRunTimer;
@@ -101,8 +102,9 @@ public class WallRunning : MonoBehaviour
             }
 
             // wall jump
-            if(Input.GetKeyDown(wallJumpKey))
+            if(Input.GetKeyDown(wallJumpKey) && maxWallJumpLimit != 0)
                 WallJump();
+                maxWallJumpLimit = maxWallJumpLimit - 1;
         } 
 
         // State 2 - Exiting Wallrun
