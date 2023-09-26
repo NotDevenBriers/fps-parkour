@@ -10,6 +10,12 @@ public class PlayAnim : MonoBehaviour
     void Start()
     {
         Anim = GetComponent<Animator>();
+        Anim.Play("TargetStill");
+    }
+
+    // Public function to play animation
+    public void PlayAnimation(string anim)
+    {
         Anim.Play("TargetFalling");
     }
 
