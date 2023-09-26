@@ -44,7 +44,9 @@ public class GrapplingGun : MonoBehaviour
     private void LateUpdate()
     {
          if (grappling)
-             lr.SetPosition(0, gunTip.position);
+            lr.SetPosition(0, gunTip.position);
+        else
+            return;
     }
 
     private void StartGrapple()
