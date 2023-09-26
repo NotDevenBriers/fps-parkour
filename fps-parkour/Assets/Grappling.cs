@@ -10,6 +10,7 @@ public class GrapplingGun : MonoBehaviour
     public Transform gunTip;
     public LayerMask whatIsGrappleable;
     public LineRenderer lr;
+    public Sliding sm;
 
     [Header("Grappling")]
     public float maxGrappleDistance;
@@ -49,6 +50,8 @@ public class GrapplingGun : MonoBehaviour
     private void StartGrapple()
     {
         if (grapplingCdTimer > 0) return;
+
+        sm.canSlide = false;
 
         grappling = true;
 
