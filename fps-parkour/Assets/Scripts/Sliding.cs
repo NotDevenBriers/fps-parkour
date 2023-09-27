@@ -19,6 +19,7 @@ public class Sliding : MonoBehaviour
     public float maxSlideTime;
     public float slideForce;
     private float slideTimer;
+    public float slideDelay;
 
     public float slideYScale;
     private float startYScale;
@@ -37,6 +38,7 @@ public class Sliding : MonoBehaviour
         pm = GetComponent<PlayerMovementAdvanced>();
 
         startYScale = playerObj.localScale.y;
+        slideDelay = 0;
     }
 
     public void slideDetect()
@@ -51,12 +53,18 @@ public class Sliding : MonoBehaviour
 
     private void Update()
     {
-        
 
+        // Decrease slideDelay over time
+        if (slideDelay > 0)
+        {
+            slideDelay -= Time.deltaTime;
+            slideDelay = Mathf.Clamp(slideDelay, 0, maxSlideTime); // Ensure it doesn't go below 0
+        }
+        
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKeyDown(slideKey) && (horizontalInput != 0 || verticalInput != 0))
+        if (Input.GetKeyDown(slideKey) && (slideDelay <= 0) && (horizontalInput != 0 || verticalInput != 0))
             StartSlide();
 
         if (Input.GetKeyUp(slideKey) && pm.sliding)
@@ -75,6 +83,7 @@ public class Sliding : MonoBehaviour
         {
             pm.sliding = true;
             cam.DoFov(90f);
+            slideDelay = 0.75F;
 
             playerObj.localScale = new Vector3(playerObj.localScale.x, slideYScale, playerObj.localScale.z);
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
@@ -97,24 +106,24 @@ public class Sliding : MonoBehaviour
     {
         Vector3 inputDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-        // sliding normal
-        if(!pm.OnSlope() || rb.velocity.y > -0.1f)
-        {
-            rb.AddForce(inputDirection.normalized * slideForce, ForceMode.Force);
-
-            slideTimer -= Time.deltaTime;
-        }
-
-        // sliding down a slope
-        else
+        // Check if the player is on a slope and sliding down
+        if (pm.OnSlope() && rb.velocity.y < -0.1f)
         {
             rb.AddForce(pm.GetSlopeMoveDirection(inputDirection) * slideForce, ForceMode.Force);
         }
+        else
+        {
+            // Apply a lower force or no force when not on a slope
+            rb.AddForce(Vector3.zero);
+        }
+
+        slideDelay -= Time.deltaTime;
+        slideTimer -= Time.deltaTime;
 
         if (slideTimer <= 0)
             StopSlide();
     }
-
+    
     private void StopSlide()
     {
         pm.sliding = false;

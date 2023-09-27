@@ -4295,19 +4295,31 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2018882596}
     m_Modifications:
     - target: {fileID: 1985001830699015439, guid: 289f424b72b0290498d45553d358293f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1985001830699015439, guid: 289f424b72b0290498d45553d358293f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1985001830699015439, guid: 289f424b72b0290498d45553d358293f, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1985001830699015439, guid: 289f424b72b0290498d45553d358293f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.344511
+      value: 158.00845
       objectReference: {fileID: 0}
     - target: {fileID: 1985001830699015439, guid: 289f424b72b0290498d45553d358293f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 17.65
+      value: -2.2500038
       objectReference: {fileID: 0}
     - target: {fileID: 1985001830699015439, guid: 289f424b72b0290498d45553d358293f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -34.398956
+      value: -261.99478
       objectReference: {fileID: 0}
     - target: {fileID: 1985001830699015439, guid: 289f424b72b0290498d45553d358293f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8361,6 +8373,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 756368797}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &760235842 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1985001830699015439, guid: 289f424b72b0290498d45553d358293f, type: 3}
+  m_PrefabInstance: {fileID: 414319729}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &762564023
 GameObject:
   m_ObjectHideFlags: 0
@@ -12024,12 +12041,12 @@ MonoBehaviour:
   wallrunSpeed: 12
   swingSpeed: 0
   climbSpeed: 3
-  speedIncreaseMultiplier: 1.5
+  speedIncreaseMultiplier: 4
   slopeIncreaseMultiplier: 2.5
   groundDrag: 4
   jumpForce: 9
   jumpCooldown: 0.25
-  airMultiplier: 0.7
+  airMultiplier: 1
   crouchSpeed: 3
   crouchYScale: 0.5
   jumpKey: 32
@@ -12071,11 +12088,12 @@ MonoBehaviour:
   playerHeight: 2
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 576
   canSlide: 0
   isSlide: 0
   maxSlideTime: 0.75
-  slideForce: 200
+  slideForce: 400
+  slideDelay: 0
   slideYScale: 0.5
   slideKey: 306
 --- !u!114 &1142199830
@@ -20566,8 +20584,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1847230501}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -20587,7 +20604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2380625eb3b2ff24ab564ae1d94ccd36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenuUI: {fileID: 1847230500}
+  pauseMenuUI: {fileID: 0}
 --- !u!1 &1803840092
 GameObject:
   m_ObjectHideFlags: 0
@@ -25143,6 +25160,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1769350318477735714, guid: cb833ee2a1010fa4db3cf1a60bf4b64f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 896922994}
+    - targetCorrespondingSourceObject: {fileID: 1769350318477735714, guid: cb833ee2a1010fa4db3cf1a60bf4b64f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 760235842}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb833ee2a1010fa4db3cf1a60bf4b64f, type: 3}
 --- !u!1 &2146352664
@@ -25254,11 +25274,10 @@ MeshFilter:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 5739247374538045335}
   - {fileID: 705507995}
   - {fileID: 1805271046}
   - {fileID: 11798086}
   - {fileID: 2134501946}
   - {fileID: 191357025}
   - {fileID: 780702213}
-  - {fileID: 414319729}
+  - {fileID: 1799363917}
