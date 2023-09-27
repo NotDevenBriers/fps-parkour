@@ -9,4 +9,11 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadSceneAsync(1);
     }
+
+    public void LoadRange()
+    {
+        SceneManager.LoadSceneAsync(2);
+    }
+
+
 }
