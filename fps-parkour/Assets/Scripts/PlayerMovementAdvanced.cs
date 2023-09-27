@@ -50,6 +50,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     
     [Header("References")]
     public PlayerCam cam;
+    public Climbing climbingScript;
     public Transform orientation;
     private Sliding sm;
 
@@ -83,7 +84,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public bool climbing;
 
     private void Start()
-    {
+    { 
         sm = GetComponent<Sliding>();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
@@ -272,6 +273,8 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     private void MovePlayer()
     {
+        if (climbingScript.exitingWall) return;
+
         if(activeGrapple) return;
         // calculate movement direction
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
