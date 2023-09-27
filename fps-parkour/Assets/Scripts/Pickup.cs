@@ -1,13 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
+    public Inventory inventory; // Reference to the Inventory script
     public float pickUpRange = 10f;
     public LayerMask layerMask;
-    public Transform weaponHoldPosition; // Assign in inspector, where the weapon should be positioned when held
+    public Transform weaponHoldPosition;
     private GameObject heldWeapon = null;
+
+    void Start()
+    {
+        inventory = GetComponent<Inventory>(); // Assume Inventory script is on the same GameObject
+    }
 
     void Update()
     {
@@ -22,7 +26,7 @@ public class Pickup : MonoBehaviour
 
     void PickUpCheck()
     {
-        if (Input.GetKeyDown(KeyCode.E)) // Assuming 'E' is the key to pick up objects
+        if (Input.GetKeyDown(KeyCode.E)) //'E' is the key to pick up objects
         {
             int x = Screen.width / 2;
             int y = Screen.height / 2;
@@ -45,6 +49,9 @@ public class Pickup : MonoBehaviour
         weapon.transform.localRotation = Quaternion.identity;
         weapon.GetComponent<Rigidbody>().isKinematic = true;
         weapon.GetComponent<Collider>().enabled = false;
+
+        // Add the weapon to the inventory
+        inventory.AddWeapon(weapon);
     }
 
     void DropWeapon()
@@ -54,6 +61,7 @@ public class Pickup : MonoBehaviour
         rb.isKinematic = false;
         rb.AddForce(transform.forward * 5f, ForceMode.Impulse); // Add some force to throw the weapon
         heldWeapon.GetComponent<Collider>().enabled = true;
+        inventory.RemoveWeapon(heldWeapon);
         heldWeapon = null;
     }
 }
