@@ -2,20 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SniperShoot : MonoBehaviour
+public class PistolShoot : MonoBehaviour
 {
+    [Header("Shooting Parameters")]
     public float damage = 100;
     public float range = 250f;
     public LayerMask layerMask;
+    public Transform HandSlot;
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        HandleInput();
+    }
+
+    // Handles Input for Shooting
+    void HandleInput()
+    {
+        if (Input.GetButtonDown("Fire1") && HandSlot.childCount >= 1)
         {
             Shoot();
         }
     }
 
+    // Shoot a ray from the center of the screen
     void Shoot()
     {
         int x = Screen.width / 2;
