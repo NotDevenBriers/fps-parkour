@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 9054836939998015277}
   - component: {fileID: 6238066539870739746}
   - component: {fileID: 1608470763470285187}
-  - component: {fileID: 7991872128715313769}
   - component: {fileID: 4558097953820084458}
   m_Layer: 0
   m_Name: Grapple Gun
@@ -117,49 +116,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7991872128715313769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6250265146055221016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 769e3f6dc6c59d7419f74eb4d7de9fef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grappling: {fileID: 0}
-  quality: 200
-  damper: 14
-  strength: 800
-  velocity: 15
-  waveCount: 3
-  waveHeight: 7
-  affectCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.00059890747
-      value: 0
-      inSlope: 5.377979
-      outSlope: 5.377979
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.05081674
-    - serializedVersion: 3
-      time: 1.0251465
-      value: -0.0446167
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!120 &4558097953820084458
 LineRenderer:
   serializedVersion: 2

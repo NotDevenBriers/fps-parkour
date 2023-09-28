@@ -9,7 +9,8 @@ public class Weapon : MonoBehaviour
     {
         Primary,
         Secondary,
-        Grenade
+        Grenade,
+        Grapple
     }
 
     public WeaponType weapontype;
