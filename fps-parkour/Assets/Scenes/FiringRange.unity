@@ -595,6 +595,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2a0ed181a7971764c997e4c598c95729, type: 3}
   m_PrefabInstance: {fileID: 1338685720}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &261200816
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 261200817}
+  m_Layer: 0
+  m_Name: GrenadeHolster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &261200817
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261200816}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.1, y: 0.47, z: 1.23}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1604725717}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &280009002
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,6 +947,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2201277bfb346241a25b90efbb74183, type: 3}
+--- !u!1 &427170510
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 427170511}
+  m_Layer: 0
+  m_Name: SecondaryHolster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &427170511
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427170510}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.1, y: -0.29, z: -1.26}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1604725717}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &431063780 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6688759846897691110, guid: f2201277bfb346241a25b90efbb74183, type: 3}
@@ -1343,6 +1405,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 05a2db26f806f604b8308482a15851db, type: 3}
   m_PrefabInstance: {fileID: 1564616639}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &598510289
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 598510290}
+  m_Layer: 0
+  m_Name: PrimaryHolster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &598510290
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598510289}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.1, y: 0.47, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1604725717}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &624182365
 GameObject:
   m_ObjectHideFlags: 0
@@ -3452,6 +3545,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 598510290}
+  - {fileID: 427170511}
+  - {fileID: 261200817}
   - {fileID: 1003788812}
   - {fileID: 1438833602}
   - {fileID: 1798865493}
@@ -3891,6 +3987,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4096
   weaponHoldPosition: {fileID: 1034540324}
+  heldWeapon: {fileID: 0}
 --- !u!114 &1802742173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3908,6 +4005,12 @@ MonoBehaviour:
   Secondary: {fileID: 0}
   Grenade: {fileID: 0}
   Grapple: {fileID: 0}
+  weaponHoldPosition: {fileID: 1034540324}
+  PrimaryHolsterPosition: {fileID: 598510290}
+  SecondaryHolsterPosition: {fileID: 427170511}
+  GrenadeHolsterPosition: {fileID: 261200817}
+  GrappleHolsterPosition: {fileID: 0}
+  pickUpScript: {fileID: 1802742170}
 --- !u!81 &1802742174
 AudioListener:
   m_ObjectHideFlags: 0
