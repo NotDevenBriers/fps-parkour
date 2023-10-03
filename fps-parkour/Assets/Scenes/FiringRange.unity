@@ -459,8 +459,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.0037720315, y: 0.019202227, z: 0.008057492}
-  m_Center: {x: 0, y: 0.0077888127, z: 0.0005581414}
+  m_Size: {x: 0.0037720313, y: 0.008057495, z: 0.01920223}
+  m_Center: {x: 0, y: -0.0013920665, z: 0.008279211}
 --- !u!54 &173860527
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4005,12 +4005,14 @@ MonoBehaviour:
   Secondary: {fileID: 0}
   Grenade: {fileID: 0}
   Grapple: {fileID: 0}
+  Player: {fileID: 1604725713}
   weaponHoldPosition: {fileID: 1034540324}
   PrimaryHolsterPosition: {fileID: 598510290}
   SecondaryHolsterPosition: {fileID: 427170511}
   GrenadeHolsterPosition: {fileID: 261200817}
   GrappleHolsterPosition: {fileID: 0}
   pickUpScript: {fileID: 1802742170}
+  grappleable: 0
 --- !u!81 &1802742174
 AudioListener:
   m_ObjectHideFlags: 0

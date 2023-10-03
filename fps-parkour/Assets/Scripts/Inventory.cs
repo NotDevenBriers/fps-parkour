@@ -22,6 +22,18 @@ public class Inventory : MonoBehaviour
     public Pickup pickUpScript;
     public bool grappleable;
 
+    private GrapplingGun grapplingGunScript;
+    private SwingingDone swingingDoneScript;
+
+    private void Awake()
+    {
+        if (Player != null)
+        {
+            grapplingGunScript = Player.GetComponent<GrapplingGun>();
+            swingingDoneScript = Player.GetComponent<SwingingDone>();
+        }
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1) && Primary != null) EquipWeapon(Primary);
@@ -36,61 +48,45 @@ public class Inventory : MonoBehaviour
 
     public bool AddWeapon(GameObject weapon)
     {
+        if (weapon == null) return false;
+
         Weapon weaponScript = weapon.GetComponent<Weapon>();
+        if (weaponScript == null) return false;
 
         switch (weaponScript.weapontype)
         {
             case Weapon.WeaponType.Primary:
-                if (Primary == null)
-                {
-                    Primary = weapon;
-                    EquipWeapon(weapon);
-                    return true;
-                }
-                HolsterWeapon(weapon, PrimaryHolsterPosition);
-                return true;
-
+                return HandleWeaponAddition(ref Primary, weapon, PrimaryHolsterPosition);
             case Weapon.WeaponType.Secondary:
-                if (Secondary == null)
-                {
-                    Secondary = weapon;
-                    EquipWeapon(weapon);
-                    return true;
-                }
-                HolsterWeapon(weapon, SecondaryHolsterPosition);
-                return true;
-
+                return HandleWeaponAddition(ref Secondary, weapon, SecondaryHolsterPosition);
             case Weapon.WeaponType.Grenade:
-                if (Grenade == null)
-                {
-                    Grenade = weapon;
-                    EquipWeapon(weapon);
-                    return true;
-                }
-                HolsterWeapon(weapon, GrenadeHolsterPosition);
-                return true;
-
+                return HandleWeaponAddition(ref Grenade, weapon, GrenadeHolsterPosition);
             case Weapon.WeaponType.Grapple:
-                if (Grapple == null)
-                {
-                    Grapple = weapon;
-                    EquipWeapon(weapon);
-                    return true;
-                }
-                HolsterWeapon(weapon, GrappleHolsterPosition);
-                return true;
+                return HandleWeaponAddition(ref Grapple, weapon, GrappleHolsterPosition);
+            default:
+                Debug.LogError("Unknown weapon type!");
+                return false;
         }
+    }
 
-        return false;
+    private bool HandleWeaponAddition(ref GameObject weaponSlot, GameObject weapon, Transform holsterPosition)
+    {
+        if (weaponSlot == null)
+        {
+            weaponSlot = weapon;
+            EquipWeapon(weapon);
+            return true;
+        }
+        HolsterWeapon(weapon, holsterPosition);
+        return true;
     }
 
     private void EquipWeapon(GameObject weapon)
     {
+        if (weapon == HandSlot) return;
+
         grappleable = false;
-        HolsterWeapon(Primary, PrimaryHolsterPosition);
-        HolsterWeapon(Secondary, SecondaryHolsterPosition);
-        HolsterWeapon(Grenade, GrenadeHolsterPosition);
-        HolsterWeapon(Grapple, GrappleHolsterPosition);
+        HolsterAllWeapons();
 
         if (weapon != null)
         {
@@ -102,13 +98,24 @@ public class Inventory : MonoBehaviour
             if (weapon == Grapple)
             {
                 grappleable = true;
-                Player.GetComponent<GrapplingGun>().enabled = true;
+                if (grapplingGunScript != null) grapplingGunScript.enabled = true;
+                if (swingingDoneScript != null) swingingDoneScript.enabled = true;
             }
-            else if (Grapple != null)
+            else
             {
-                Player.GetComponent<GrapplingGun>().enabled = false;
+                grappleable = false;
+                if (grapplingGunScript != null) grapplingGunScript.enabled = false;
+                if (swingingDoneScript != null) swingingDoneScript.enabled = false;
             }
         }
+    }
+
+    private void HolsterAllWeapons()
+    {
+        HolsterWeapon(Primary, PrimaryHolsterPosition);
+        HolsterWeapon(Secondary, SecondaryHolsterPosition);
+        HolsterWeapon(Grenade, GrenadeHolsterPosition);
+        HolsterWeapon(Grapple, GrappleHolsterPosition);
     }
 
     private void HolsterWeapon(GameObject weapon, Transform holsterPosition)
@@ -124,28 +131,27 @@ public class Inventory : MonoBehaviour
 
     public void RemoveWeapon(GameObject weapon)
     {
-        Weapon weaponScript = weapon.GetComponent<Weapon>();
+        Weapon weaponScript = weapon?.GetComponent<Weapon>();
+        if (weaponScript == null) return;
 
         switch (weaponScript.weapontype)
         {
             case Weapon.WeaponType.Primary:
                 if (Primary == weapon) Primary = null;
                 break;
-
             case Weapon.WeaponType.Secondary:
                 if (Secondary == weapon) Secondary = null;
                 break;
-
             case Weapon.WeaponType.Grenade:
                 if (Grenade == weapon) Grenade = null;
                 break;
-
             case Weapon.WeaponType.Grapple:
                 if (Grapple == weapon)
                 {
                     Grapple = null;
                     grappleable = false;
-                    Player.GetComponent<GrapplingGun>().enabled = false;
+                    if (grapplingGunScript != null) grapplingGunScript.enabled = false;
+                    if (swingingDoneScript != null) swingingDoneScript.enabled = false;
                 }
                 break;
         }
@@ -161,12 +167,10 @@ public class Inventory : MonoBehaviour
     private void InitialSetup()
     {
         // Disable the GrapplingGun script at the start of the game
-        if (Player.GetComponent<GrapplingGun>() != null)
+        if (grapplingGunScript != null)
         {
-            Player.GetComponent<GrapplingGun>().enabled = false;
+            grapplingGunScript.enabled = false;
+            swingingDoneScript.enabled = false;
         }
     }
-
 }
-
-
