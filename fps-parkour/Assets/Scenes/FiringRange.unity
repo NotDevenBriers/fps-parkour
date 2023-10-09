@@ -1845,6 +1845,37 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1802742173}
   m_SourcePrefab: {fileID: 100100000, guid: a7bffd4ae8af20f4a941f84e24310e3f, type: 3}
+--- !u!1 &761879243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 761879244}
+  m_Layer: 0
+  m_Name: GrappleHolster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &761879244
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761879243}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.5908175, y: 3.7090137, z: -4.3248415}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1604725717}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &794264891
 GameObject:
   m_ObjectHideFlags: 0
@@ -2750,11 +2781,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1371917548908211182, guid: 284bdd9c9d4107e4085690b2df805eb2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.01079
+      value: -0.00038
       objectReference: {fileID: 0}
     - target: {fileID: 1371917548908211182, guid: 284bdd9c9d4107e4085690b2df805eb2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.01552
       objectReference: {fileID: 0}
     - target: {fileID: 1608470763470285187, guid: 284bdd9c9d4107e4085690b2df805eb2, type: 3}
       propertyPath: m_Enabled
@@ -2794,15 +2825,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9054836939998015277, guid: 284bdd9c9d4107e4085690b2df805eb2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9054836939998015277, guid: 284bdd9c9d4107e4085690b2df805eb2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0059
+      value: -0.0032
       objectReference: {fileID: 0}
     - target: {fileID: 9054836939998015277, guid: 284bdd9c9d4107e4085690b2df805eb2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.0026
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9054836939998015277, guid: 284bdd9c9d4107e4085690b2df805eb2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3548,6 +3579,7 @@ Transform:
   - {fileID: 598510290}
   - {fileID: 427170511}
   - {fileID: 261200817}
+  - {fileID: 761879244}
   - {fileID: 1003788812}
   - {fileID: 1438833602}
   - {fileID: 1798865493}
@@ -4000,7 +4032,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cdf453558bf0eb48bbe9cc274af8ff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HandSlot: {fileID: 0}
+  HandSlot: {fileID: 1034540324}
   Primary: {fileID: 0}
   Secondary: {fileID: 0}
   Grenade: {fileID: 0}
@@ -4010,9 +4042,9 @@ MonoBehaviour:
   PrimaryHolsterPosition: {fileID: 598510290}
   SecondaryHolsterPosition: {fileID: 427170511}
   GrenadeHolsterPosition: {fileID: 261200817}
-  GrappleHolsterPosition: {fileID: 0}
-  pickUpScript: {fileID: 1802742170}
+  GrappleHolsterPosition: {fileID: 761879244}
   grappleable: 0
+  pickUpScript: {fileID: 1802742170}
 --- !u!81 &1802742174
 AudioListener:
   m_ObjectHideFlags: 0

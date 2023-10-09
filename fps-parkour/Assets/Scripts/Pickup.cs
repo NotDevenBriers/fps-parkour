@@ -49,6 +49,7 @@ public class Pickup : MonoBehaviour
 
         // Add the weapon to the inventory
         inventory.AddWeapon(weapon);
+        heldWeapon = weapon;
     }
 
     void DropWeapon()

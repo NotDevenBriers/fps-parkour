@@ -17,11 +17,12 @@ public class Inventory : MonoBehaviour
     public Transform SecondaryHolsterPosition;
     public Transform GrenadeHolsterPosition;
     public Transform GrappleHolsterPosition;
-
-    // Other variables
-    public Pickup pickUpScript;
+    
+    //OtherVariables
     public bool grappleable;
 
+    // Scripts
+    public Pickup pickUpScript;
     private GrapplingGun grapplingGunScript;
     private SwingingDone swingingDoneScript;
 
@@ -36,6 +37,7 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
+        
         if (Input.GetKeyDown(KeyCode.Alpha1) && Primary != null) EquipWeapon(Primary);
         if (Input.GetKeyDown(KeyCode.Alpha2) && Secondary != null) EquipWeapon(Secondary);
         if (Input.GetKeyDown(KeyCode.Alpha3) && Grenade != null) EquipWeapon(Grenade);
@@ -94,6 +96,8 @@ public class Inventory : MonoBehaviour
             weapon.SetActive(true);
             weapon.transform.localPosition = Vector3.zero;
             weapon.transform.localRotation = Quaternion.identity;
+            pickUpScript.heldWeapon = weapon;
+            
 
             if (weapon == Grapple)
             {
