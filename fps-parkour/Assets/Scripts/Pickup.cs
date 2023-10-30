@@ -6,7 +6,7 @@ public class Pickup : MonoBehaviour
     public float pickUpRange = 10f;
     public LayerMask layerMask;
     public Transform weaponHoldPosition;
-    private GameObject heldWeapon = null;
+    public GameObject heldWeapon = null;
 
     void Start()
     {
@@ -18,7 +18,7 @@ public class Pickup : MonoBehaviour
         PickUpCheck();
 
         // Dropping weapon
-        if (Input.GetKeyDown(KeyCode.G) && heldWeapon != null)
+        if (Input.GetKeyDown(KeyCode.G))
         {
             DropWeapon();
         }
@@ -34,7 +34,7 @@ public class Pickup : MonoBehaviour
             Ray pickUpChecker = Camera.main.ScreenPointToRay(new Vector3(x, y));
             RaycastHit hit;
 
-            if (Physics.Raycast(pickUpChecker, out hit, pickUpRange, layerMask.value) && heldWeapon == null)
+            if (Physics.Raycast(pickUpChecker, out hit, pickUpRange, layerMask.value))
             {
                 heldWeapon = hit.transform.gameObject;
                 PickupWeapon(heldWeapon);
@@ -44,14 +44,12 @@ public class Pickup : MonoBehaviour
 
     void PickupWeapon(GameObject weapon)
     {
-        weapon.transform.SetParent(weaponHoldPosition);
-        weapon.transform.localPosition = Vector3.zero;
-        weapon.transform.localRotation = Quaternion.identity;
         weapon.GetComponent<Rigidbody>().isKinematic = true;
         weapon.GetComponent<Collider>().enabled = false;
 
         // Add the weapon to the inventory
         inventory.AddWeapon(weapon);
+        heldWeapon = weapon;
     }
 
     void DropWeapon()
@@ -63,5 +61,10 @@ public class Pickup : MonoBehaviour
         heldWeapon.GetComponent<Collider>().enabled = true;
         inventory.RemoveWeapon(heldWeapon);
         heldWeapon = null;
+    }
+
+    public void SetheldWeapon(GameObject weapon)
+    {
+        heldWeapon = weapon;    
     }
 }
