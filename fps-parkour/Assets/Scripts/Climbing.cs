@@ -66,10 +66,12 @@ public class Climbing : MonoBehaviour
         // State 2 - Exiting Wall
         else if (exitingWall)
         {
-            if (climbing) StopClimbing();
+            //if (climbing) StopClimbing();
 
             if(exitWallTimer > 0) exitWallTimer -= Time.deltaTime;
             if(exitWallTimer < 0) exitingWall = false;
+            pm.desiredMoveSpeed = 10;
+            pm.moveSpeed = 10;
         }
 
         // State 3 - 
@@ -118,6 +120,8 @@ public class Climbing : MonoBehaviour
         climbing = false;
         pm.climbing = false;
         pm.grounded = true;
+        pm.desiredMoveSpeed = 10;
+        pm.moveSpeed = 10;
 
         // particle effects
     }
@@ -131,7 +135,6 @@ public class Climbing : MonoBehaviour
 
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         rb.AddForce(forceToApply, ForceMode.Impulse);
-
         climbJumpsLeft--;
     }
 }

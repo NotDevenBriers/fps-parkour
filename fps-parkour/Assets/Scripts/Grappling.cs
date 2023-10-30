@@ -40,14 +40,15 @@ public class GrapplingGun : MonoBehaviour
     {
         wr.maxWallJumpLimit = 3;
         wr.wallRunTimer = wr.maxWallRunTime;
-        print(wr.maxWallJumpLimit); 
-        print(wr.wallRunTimer);
+        //print(wr.maxWallJumpLimit); 
+        //print(wr.wallRunTimer);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(grappleKey))
          StartGrapple();
+         //sm.canSlide = false;
 
         if (grapplingCdTimer > 0)
             grapplingCdTimer -= Time.deltaTime;
@@ -59,6 +60,7 @@ public class GrapplingGun : MonoBehaviour
             {
                 lr.SetPosition(0, gunTip.position);
                 ResetWall();
+                sm.canSlide = false;
             }
             
         else
@@ -103,11 +105,11 @@ public class GrapplingGun : MonoBehaviour
 
 private void CancelGrapple()
 {
-    sm.canSlide = true;
     grappling = false;
     pm.freeze = false;
     grapplingCdTimer = grapplingCd;
     lr.enabled = false;
+    sm.canSlide = true;
 }
 
     private void ExecuteGrapple()
@@ -129,12 +131,10 @@ private void CancelGrapple()
     public void StopGrapple()
     {
         pm.freeze = false;
-
         grappling = false;
-
         grapplingCdTimer = grapplingCd;
-
         lr.enabled = false;
+        sm.canSlide = true;
     }
 
     public bool IsGrappling()
